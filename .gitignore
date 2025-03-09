@@ -1,0 +1,9 @@
+# Python virtual environment files
+venv
+
+# Environment files
+.env
+
+# Input and output files
+**/input-files
+**/output-files

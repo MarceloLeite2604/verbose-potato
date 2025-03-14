@@ -1,9 +1,15 @@
 # Python virtual environment files
 venv
 
+# Python cache
+__pycache__
+
 # Environment files
 .env
 
 # Input and output files
 **/input-files
 **/output-files
+
+# Redis container data
+docker/redis/data

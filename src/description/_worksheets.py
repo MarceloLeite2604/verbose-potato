@@ -15,9 +15,9 @@ def _is_empty(cell):
 
 
 def _is_input(cell):
-    # TODO Change by check style == 'Editáveis
-    return cell.fill.bgColor.rgb \
-        and cell.fill.bgColor.rgb == 'FFFCD5B4'
+
+    return cell.style \
+        and cell.style == 'Editáveis'
 
 
 def _retrieve_formula_inputs(formula):
@@ -81,6 +81,55 @@ def _elaborate_cell_data(cell):
     return cell_data
 
 
+def _elaborate_descriptions(definition):
+
+    worksheet_title = definition['title']
+
+    descriptions = {}
+
+    for cell_range, cell_data in definition['cells'].items():
+        description = f"Cell \"{worksheet_title}!{cell_range}\" "
+
+        if 'formula' in cell_data:
+            cell_type = 'formula'
+            description += f"has formula \"{cell_data['formula']['definition']}\"."
+        elif 'value' in cell_data:
+            cell_type = 'value'
+            description += f"has value \"{cell_data['value']}\"."
+        elif 'require_input' in cell_data:
+            cell_type = 'input'
+            description += "requires input from user."
+
+        metadata = {
+            'cell_range': cell_range,
+            'type': cell_type,
+        }
+
+        if cell_type == 'formula' \
+                and 'inputs' in cell_data['formula']:
+
+            inputs = cell_data['formula']['inputs']
+            formula_inputs = []
+
+            if 'ranges' in inputs:
+                formula_inputs.extend(inputs['ranges'])
+
+            if 'cells' in inputs:
+                formula_inputs.extend(inputs['cells'])
+
+            if 'defined_names' in inputs:
+                formula_inputs.extend(inputs['defined_names'])
+
+            metadata['formula-inputs'] = formula_inputs
+
+        descriptions[cell_range] = {
+            'text': description,
+            'metadata': metadata
+        }
+
+    return descriptions
+
+
 def _write_worksheet_definition(worksheet):
     print(f'Processing worksheet {worksheet.title}.')
 
@@ -108,13 +157,15 @@ def _write_worksheet_definition(worksheet):
     if len(cells.keys()) > 0:
         definition['cells'] = cells
 
+    descriptions = _elaborate_descriptions(definition)
+
     file_name = f'{as_file_name(worksheet.title)}.json'
 
     output_path = retrieve_output_file_path(
         'definitions', 'worksheets', file_name)
 
     with open(output_path, 'w') as file:
-        json.dump(definition, file, ensure_ascii=False,
+        json.dump(descriptions, file, ensure_ascii=False,
                   indent=2, separators=(',', ': '))
 
 

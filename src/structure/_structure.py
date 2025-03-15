@@ -5,6 +5,7 @@ from configuration import create_temporary_file, retrieve_output_file_path
 from xlsx2html import xlsx2html
 from redis import Redis
 import json
+from unidecode import unidecode
 
 
 def _customize_input():
@@ -93,8 +94,8 @@ def save_structure_on_database():
 
         with open(structure_file_path, 'r') as metadata_file:
             structure_content = metadata_file.read()
-            # TODO Beware with special characters
-            redis_client.set(worksheet_name, structure_content)
+            key = unidecode(worksheet_name)
+            redis_client.set(key, structure_content)
 
     redis_client.close()
 

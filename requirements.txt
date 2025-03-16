@@ -27,6 +27,7 @@ dataclasses-json==0.6.7
 debugpy==1.8.13
 decorator==5.2.1
 defusedxml==0.7.1
+distro==1.9.0
 dotenv==0.9.9
 emoji==2.14.1
 et_xmlfile==2.0.0
@@ -50,6 +51,7 @@ ipython_pygments_lexers==1.1.1
 isoduration==20.11.0
 jedi==0.19.2
 Jinja2==3.1.6
+jiter==0.9.0
 joblib==1.4.2
 json5==0.10.0
 jsonpatch==1.33
@@ -68,6 +70,7 @@ jupyterlab_server==2.27.3
 langchain==0.3.20
 langchain-community==0.3.19
 langchain-core==0.3.42
+langchain-openai==0.3.8
 langchain-text-splitters==0.3.6
 langdetect==1.0.9
 langsmith==0.3.13
@@ -88,6 +91,7 @@ notebook_shim==0.2.4
 numpy==1.26.4
 numpy-financial==1.0.0
 olefile==0.47
+openai==1.66.3
 openpyxl==3.1.5
 orjson==3.10.15
 overrides==7.7.0
@@ -96,6 +100,8 @@ pandas==2.2.3
 pandocfilters==1.5.1
 parso==0.8.4
 pexpect==4.9.0
+pinecone==6.0.2
+pinecone-plugin-interface==0.0.7
 platformdirs==4.3.6
 prometheus_client==0.21.1
 prompt_toolkit==3.0.50
@@ -136,6 +142,7 @@ SQLAlchemy==2.0.38
 stack-data==0.6.3
 tenacity==9.0.0
 terminado==0.18.1
+tiktoken==0.9.0
 tinycss2==1.4.0
 tornado==6.4.2
 tqdm==4.67.1

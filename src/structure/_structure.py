@@ -102,8 +102,8 @@ def save_structure_on_database():
 
 def write_structure():
 
-    customized_input = _customize_input()
+    # customized_input = _customize_input()
 
-    _write_workbook_structure(customized_input)
+    # _write_workbook_structure(customized_input)
 
     save_structure_on_database()

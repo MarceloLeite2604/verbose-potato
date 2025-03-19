@@ -6,7 +6,6 @@ _CELL_REFERENCE_REGEX = r"^(\$?'?(?<workbook_name>[A-zÀ-ú ]+)'?[!\.])?\$?(?<st
 
 
 def split_cell_reference(coordinate):
-    regex.compile(_CELL_REFERENCE_REGEX)
     match = regex.match(_CELL_REFERENCE_REGEX, coordinate)
 
     if not match:

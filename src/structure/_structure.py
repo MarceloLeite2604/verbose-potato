@@ -6,6 +6,7 @@ from xlsx2html import xlsx2html
 from redis import Redis
 import json
 from unidecode import unidecode
+from ._optimize import optimize_workbook_structure
 
 
 def _customize_input():
@@ -106,4 +107,6 @@ def write_structure():
 
     # _write_workbook_structure(customized_input)
 
-    save_structure_on_database()
+    optimize_workbook_structure()
+
+    # save_structure_on_database()
